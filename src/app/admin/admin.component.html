@@ -1,0 +1,43 @@
+
+<mat-sidenav-container class="admin-container">
+    <mat-sidenav #sidenav mode="side" opened class="sidenav">
+      <mat-toolbar color="primary" class="sidenav-toolbar">
+        <span>Administration</span>
+      </mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item routerLink="/admin/dashboard" routerLinkActive="active">
+          <mat-icon matListIcon>dashboard</mat-icon>
+          Tableau de bord
+        </a>
+        <a mat-list-item routerLink="/admin/products" routerLinkActive="active">
+          <mat-icon matListIcon>inventory</mat-icon>
+          Produits
+        </a>
+        <a mat-list-item routerLink="/admin/orders" routerLinkActive="active">
+          <mat-icon matListIcon>shopping_cart</mat-icon>
+          Commandes
+        </a>
+        <a mat-list-item routerLink="/admin/users" routerLinkActive="active">
+          <mat-icon matListIcon>people</mat-icon>
+          Utilisateurs
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <mat-toolbar color="primary" class="main-toolbar">
+        <button mat-icon-button (click)="sidenav.toggle()" class="menu-button">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span>Mon E-commerce - Admin</span>
+        <button class="logout-btn" mat-button color="accent" (click)="logout()" >logout</button>
+
+      </mat-toolbar>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+
+  

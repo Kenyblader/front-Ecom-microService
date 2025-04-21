@@ -1,0 +1,36 @@
+<!-- src/app/admin/dashboard/dashboard.component.html -->
+<div class="dashboard-container">
+    <h2 class="dashboard-title">Tableau de bord</h2>
+    <div class="stats-grid">
+      <mat-card class="stat-card">
+        <mat-card-header>
+          <mat-icon matCardAvatar class="stat-icon">inventory</mat-icon>
+          <mat-card-title>Produits</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="stat-value">{{ stats.products }}</p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="stat-card">
+        <mat-card-header>
+          <mat-icon matCardAvatar class="stat-icon">shopping_cart</mat-icon>
+          <mat-card-title>Commandes</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="stat-value">{{ stats.orders }}</p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card class="stat-card">
+        <mat-card-header>
+          <mat-icon matCardAvatar class="stat-icon">people</mat-icon>
+          <mat-card-title>Utilisateurs</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="stat-value">{{ stats.users }}</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+  
+  
+  

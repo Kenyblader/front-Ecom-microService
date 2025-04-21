@@ -1,0 +1,47 @@
+.order-management-container {
+    padding: 24px;
+  }
+  
+  .section-title {
+    color: #1976d2;
+    font-size: 28px;
+    font-weight: 500;
+    margin-bottom: 24px;
+  }
+  
+  mat-table {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  mat-header-cell, mat-cell {
+    padding: 16px;
+  }
+  
+  mat-header-cell {
+    background: #e3f2fd;
+    color: #1976d2;
+    font-weight: 500;
+  }
+  
+  mat-row {
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #f5f5f5;
+    }
+  }
+  
+  mat-select {
+    background: #f5f5f5;
+    border-radius: 4px;
+    padding: 4px 8px;
+    color: #1976d2;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background: #e3f2fd;
+    }
+  }

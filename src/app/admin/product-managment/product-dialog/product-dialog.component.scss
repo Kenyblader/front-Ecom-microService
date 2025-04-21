@@ -1,0 +1,22 @@
+.product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .animated-field {
+    transition: all 0.3s ease;
+  
+    &:focus-within {
+      transform: scale(1.02);
+      mat-form-field-outline {
+        color: #ff5722 !important;
+      }
+    }
+  }
+  
+  mat-error {
+    color: #d32f2f;
+    font-size: 12px;
+  }

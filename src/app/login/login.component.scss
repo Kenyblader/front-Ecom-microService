@@ -67,3 +67,9 @@ mat-error {
     cursor: not-allowed;
   }
 }
+
+.no-background-snackbar {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}

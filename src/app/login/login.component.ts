@@ -8,6 +8,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import {AuthService} from '../services/auth.service';
 import {MatSnackBar} from  '@angular/material/snack-bar' ;
+import { error } from 'console';
+import { openCustomSnackBar } from '../components/custom-snackbar/custom-snackbar.component';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +28,7 @@ export class LoginComponent {
   selectedTab = 0;
   private snackbar=inject(MatSnackBar)
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder, private authService: AuthService,private router:Router) {
     // Formulaire de connexion
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -50,7 +53,18 @@ export class LoginComponent {
   onLoginSubmit() {
     if (this.loginForm.valid) {
       console.log('Connexion :', this.loginForm.value);
-      // TODO: Appeler l'API d'authentification
+      this.authService.login(this.loginForm.value.email,this.loginForm.value.password).subscribe({
+        next:token=>{
+          console.log(token);
+          openCustomSnackBar('Login succes',this.snackbar,2000)
+          this.router.navigate(['/admin'])
+
+        },
+        error:e=>{
+          openCustomSnackBar('Login false Verifier vos identifiants',this.snackbar,3000)
+          console.log(e)
+        }
+      })
     }
   }
 
@@ -59,13 +73,15 @@ export class LoginComponent {
       console.log('Inscription :', this.registerForm.value);
       this.authService.register(this.registerForm.value.email,this.registerForm.value.password,this.registerForm.value.name).subscribe({
         next: user=>{
-          this.snackbar.open('Inscription Reussit',undefined,{duration:3000})
+          openCustomSnackBar('Inscription reussit',this.snackbar,3000)
           setTimeout(()=>{
             this.selectedTab=0
           },3000)
           
         },
-        error: e=>{console.error(e)}
+        error: e=>{console.error(e);
+          openCustomSnackBar('Un Probleme est survenu veuiller reessayer',this.snackbar,3000)
+        }
       })
     }
   }
