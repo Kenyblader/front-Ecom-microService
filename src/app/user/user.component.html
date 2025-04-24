@@ -1,0 +1,45 @@
+<!-- src/app/user/user.component.html -->
+<div class="user-container">
+  <mat-toolbar color="primary" class="toolbar">
+    <button mat-icon-button (click)="toggleSidenav()" class="menu-button" *ngIf="isMobile">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="title">Mon Espace Utilisateur</span>
+    <div class="nav-links" *ngIf="!isMobile">
+      <a mat-button routerLink="/user/{{id}}/products" routerLinkActive="active">Produits</a>
+      <a mat-button routerLink="/user/{{id}}/cart" routerLinkActive="active">Panier</a>
+      <a mat-button routerLink="/user/{{id}}/orders" routerLinkActive="active">Commandes</a>
+      <a mat-button routerLink="/user/{{id}}/profile" routerLinkActive="active">Profil</a>
+    </div>
+    <span class="spacer"></span>
+    <button mat-raised-button color="accent" (click)="logout()">Déconnexion</button>
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over" [fixedInViewport]="true" [fixedTopGap]="64" *ngIf="isMobile">
+      <mat-nav-list>
+        <a mat-list-item routerLink="/users/{{id}}/products" routerLinkActive="active" (click)="sidenav.close()">
+          Produits
+        </a>
+        <a mat-list-item routerLink="/user/{{id}}/cart" routerLinkActive="active" (click)="sidenav.close()">
+          Panier
+        </a>
+        <a mat-list-item routerLink="/user/{{id}}/orders" routerLinkActive="active" (click)="sidenav.close()">
+          Commandes
+        </a>
+        <a mat-list-item routerLink="/user/{{id}}/profile" routerLinkActive="active" (click)="sidenav.close()">
+          Profil
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<!-- src/app/user/user.component.ts -->
+
+<!-- src/app/user/user.component.scss -->

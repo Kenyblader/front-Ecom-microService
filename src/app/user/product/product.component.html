@@ -1,0 +1,37 @@
+<!-- src/app/user/products/products.component.html -->
+<div class="products-container">
+    <h2 class="section-title">Nos Produits</h2>
+    <div class="filters">
+      <mat-form-field appearance="outline" class="search-field">
+        <mat-label>Rechercher par nom</mat-label>
+        <input matInput [(ngModel)]="searchTerm" (ngModelChange)="filterProducts()" placeholder="Entrez un nom de produit">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="filter-field">
+        <mat-label>Trier par</mat-label>
+        <mat-select [(value)]="sortBy" (selectionChange)="filterProducts()">
+          <mat-option value="name">Nom</mat-option>
+          <mat-option value="priceAsc">Prix (croissant)</mat-option>
+          <mat-option value="priceDesc">Prix (décroissant)</mat-option>
+          <mat-option value="stock">Stock</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="products-grid">
+      <mat-card *ngFor="let product of filteredProducts" class="product-card">
+        <mat-card-header>
+          <mat-card-title>{{ product.name }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ product.description || 'Aucune description' }}</p>
+          <p><strong>Prix :</strong> {{ product.price | number:'1.2-2' }} €</p>
+          <p><strong>Stock :</strong> {{ product.stock }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="accent" (click)="addToCart(product)" [disabled]="product.stock === 0">
+            Ajouter au panier
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+  

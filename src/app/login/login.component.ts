@@ -54,10 +54,13 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       console.log('Connexion :', this.loginForm.value);
       this.authService.login(this.loginForm.value.email,this.loginForm.value.password).subscribe({
-        next:token=>{
-          console.log(token);
+        next:data=>{
+          console.log(data.role);
           openCustomSnackBar('Login succes',this.snackbar,2000)
-          this.router.navigate(['/admin'])
+          if(data.role=='[ROLE_ADMIN]')
+            this.router.navigate(['/admin'])
+          else if (data.role==='[ROLE_USER]')
+            this.router.navigate(["/user",data.user.id])
 
         },
         error:e=>{

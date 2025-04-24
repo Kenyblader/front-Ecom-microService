@@ -10,8 +10,9 @@ import { User } from '../models/user';
   providedIn: 'root'
 })
 export class AdminService {
-  private apiUrl = 'http://localhost:8082/orders'; 
-  private apiurlUser= 'http://localhost:8083/users'
+ 
+  
+  private apiUrl = 'http://localhost:8082/orders';
 
   constructor(private http: HttpClient) {}
 
@@ -21,9 +22,23 @@ export class AdminService {
     return this.http.get<Order[]>(`${this.apiUrl}`);
   }
 
-  updateOrderStatus(id: number,order:Order): Observable<Order> {
-    return this.http.put<Order>(`${this.apiUrl}/${id}`, {... order });
+  getOrdersByUserId(id:number){
+    return this.http.get<Order[]>(`${this.apiUrl}/user/${id}`)
   }
+
+  createOrder(order: Order) {
+    return this.http.post<Order>(`${this.apiUrl}`,order);
+  }
+
+  updateOrder(id: number,order:Order): Observable<Order> {
+    return this.http.put<Order>(`${this.apiUrl}/${id}`, order);
+  }
+
+  deleteOrder(id:number){
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+
 
   // Gestion des utilisateurs
   getUsers(): Observable<User[]> {

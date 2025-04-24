@@ -52,7 +52,7 @@ export class OrderManagementComponent implements OnInit {
         console.error('Erreur :', "order not found");
         return;
     }
-    this.adminService.updateOrderStatus(orderId, updatedOrder).subscribe({
+    this.adminService.updateOrder(orderId, updatedOrder).subscribe({
       next: () => {
         this.snackBar.open('Statut de la commande mis à jour !', 'Fermer', { duration: 3000 });
         this.loadOrders();

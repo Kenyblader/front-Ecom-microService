@@ -1,0 +1,48 @@
+<!-- src/app/user/orders/orders.component.html -->
+<div class="orders-container">
+    <h2 class="section-title">Mes Commandes</h2>
+    <mat-card class="orders-card">
+      <mat-card-content>
+        <table mat-table [dataSource]="orders" class="mat-elevation-z8">
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef>ID</th>
+            <td mat-cell *matCellDef="let order">{{ order.id }}</td>
+          </ng-container>
+          <ng-container matColumnDef="products">
+            <th mat-header-cell *matHeaderCellDef>Produits</th>
+            <td mat-cell *matCellDef="let order">{{ formatProducts(order.products) }}</td>
+          </ng-container>
+          <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef>Total (€)</th>
+            <td mat-cell *matCellDef="let order">{{ order.total | number:'1.2-2' }}</td>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Statut</th>
+            <td mat-cell *matCellDef="let order">
+              <span [ngClass]="getStatusClass(order.status)">{{ order.status }}</span>
+            </td>
+          </ng-container>
+          <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef>Date</th>
+            <td mat-cell *matCellDef="let order">{{ order.createdAt | date:'short' }}</td>
+          </ng-container>
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let order">
+              <button mat-raised-button color="warn" (click)="cancelOrder(order)" *ngIf="canCancel(order)">
+                Annuler
+              </button>
+            </td>
+          </ng-container>
+  
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
+  <!-- src/app/user/orders/orders.component.ts -->
+
+  
+  <!-- src/app/user/orders/orders.component.scss -->
